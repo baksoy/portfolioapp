@@ -11,22 +11,12 @@ import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
-    private Context context;
-    private CharSequence text;
-    private Toast toast;
-
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-    private Button button5;
-    private Button button6;
+    private Button button1, button2, button3, button4, button5, button6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = getApplicationContext();
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
@@ -34,55 +24,29 @@ public class MainActivity extends ActionBarActivity {
         button5 = (Button) findViewById(R.id.button5);
         button6 = (Button) findViewById(R.id.button6);
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                text = "This button will launch Spotify Streamer App!";
-                toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                text = "This button will launch Football Scores App!";
-                toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                text = "This button will launch Library App!";
-                toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        button4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                text = "This button will launch Build It Bigger App!";
-                toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        button5.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                text = "This button will launch Baxoy Reader App!";
-                toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
-        button6.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                text = "This button will launch my capstone app!";
-                toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });
-
+        button1.setOnClickListener(v);
+        button2.setOnClickListener(v);
+        button3.setOnClickListener(v);
+        button4.setOnClickListener(v);
+        button5.setOnClickListener(v);
+        button6.setOnClickListener(v);
     }
+
+    public void displayToast(View view) {
+        Button button = (Button) view;
+        String buttonText = (String) button.getText();
+        Context context = getApplicationContext();
+        CharSequence text = getString(R.string.open_app) + buttonText;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    View.OnClickListener v = new View.OnClickListener() {
+        public void onClick(View view) {
+            displayToast(view);
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
